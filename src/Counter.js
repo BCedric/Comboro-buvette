@@ -20,7 +20,6 @@ const Counter = () => {
 
   const calculateCounter = () => {
     const date = moment()
-    const diff = openDate.diff(date, 'seconds')
     if (date > openDate && date < closeDate) {
       return `la buvette fermera dans ${getDateDiffStr(date, closeDate)}`
     } else if (date > closeDate) {
