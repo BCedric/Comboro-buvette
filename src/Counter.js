@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
+import AfficheurValeur from './AfficheurValeur'
 
 const Counter = () => {
   const openDate = moment()
@@ -18,10 +19,14 @@ const Counter = () => {
     .minutes(0)
     .seconds(0)
 
+  const [willOpen, setwillOpen] = useState(true)
+  const [counter, setCounter] = useState({})
+
   const calculateCounter = () => {
     const date = moment()
     if (date > openDate && date < closeDate) {
-      return `la buvette fermera dans ${getDateDiffStr(date, closeDate)}`
+      setwillOpen(false)
+      setCounter(getDateDiffStr(date, openDate))
     } else if (date > closeDate) {
       const openDateNextYear = moment()
         .year(parseInt(moment().format('YYYY')) + 1)
@@ -31,9 +36,11 @@ const Counter = () => {
         .hour(11)
         .minutes(0)
         .seconds(0)
-      return `la buvette ouvrira dans ${getDateDiffStr(date, openDateNextYear)}`
+      setwillOpen(true)
+      setCounter(getDateDiffStr(date, openDateNextYear))
     }
-    return `La buvette ouvrira dans ${getDateDiffStr(date, openDate)}`
+    setwillOpen(true)
+    setCounter(getDateDiffStr(date, openDate))
   }
 
   const getDateDiffStr = (startDate, endDate) => {
@@ -47,22 +54,34 @@ const Counter = () => {
     const datePlusMinutes = datePlusDays.add(minutes, 'minutes')
     const seconds = endDate.diff(datePlusMinutes, 'seconds')
 
-    return `${months > 0 ? `${months} mois` : ''} ${
-      days > 0 ? `${days} jours` : ''
-    } ${hours > 0 ? `${hours} heures` : ''}  ${
-      minutes > 0 ? `${minutes} minutes` : ''
-    } ${seconds} secondes`
+    return {
+      mois: months,
+      jours: days,
+      heures: hours,
+      minutes: minutes,
+      secondes: seconds
+    }
   }
 
-  const [counter, setCounter] = useState(calculateCounter())
-
   useEffect(() => {
+    calculateCounter()
     setInterval(() => {
-      setCounter(calculateCounter())
+      calculateCounter()
     }, 1000)
-  })
+  }, [])
 
-  return <div className="counter"> {counter}</div>
+  return (
+    <div className="counter">
+      <span className="will-open-label">
+        {willOpen ? 'La buvette ouvrira dans' : 'La buvette fermera dans'}
+      </span>
+      <div className="count-area">
+        {Object.keys(counter).map((key, value) => (
+          <AfficheurValeur key={key} valeur={counter[key]} unite={key} />
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default Counter

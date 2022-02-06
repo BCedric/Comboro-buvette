@@ -16,8 +16,41 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   font-size: 5em;
   padding: 2em;
   text-align: center;
   color: white;
+}
+
+.afficheur-valeur {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(160, 155, 155, 0.7);
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.5em;
+  border: 2px solid white;
+  border-radius: 0.1em;
+  color: white;
+  margin: 0 0.25em;
+}
+
+.afficheur-valeur .valeur {
+  font-size: 1.5em;
+}
+.afficheur-valeur .unite {
+  font-size: 0.5em;
+}
+
+.will-open-label {
+  font-size: 1em;
+  margin: 0.25em;
+}
+
+.count-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
