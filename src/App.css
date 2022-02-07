@@ -86,13 +86,33 @@ body {
     font-size: 0.25em;
   }
 }
+@media (max-width: 460px) {
+  .afficheur-valeur {
+    padding: 2vh;
+    margin: 1vh;
+  }
+  .afficheur-valeur .valeur {
+    font-size: 10vh;
+  }
+  .afficheur-valeur .unite {
+    font-size: 2.5vh;
+  }
 
-@media (max-width: 850px) {
   .will-open-label {
-    font-size: 0.5em;
+    font-size: 5vh !important;
     margin: 0.25em;
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 390px) {
+  .counter {
+    padding: 0.12em;
+  }
+}
+
+@media (max-width: 820px) {
+  .will-open-label {
+    font-size: 0.5em;
+    margin: 0.25em;
+  }
 }
