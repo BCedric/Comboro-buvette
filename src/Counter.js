@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 import AfficheurValeur from './AfficheurValeur'
+import gif from './giphy.webp'
 
 const Counter = () => {
   const openDate = moment()
@@ -21,26 +22,32 @@ const Counter = () => {
 
   const [willOpen, setwillOpen] = useState(true)
   const [counter, setCounter] = useState({})
+  const [displayGif, setDisplayGif] = useState(false)
 
   const calculateCounter = () => {
     const date = moment()
-    if (date > openDate && date < closeDate) {
-      setwillOpen(false)
-      setCounter(getDateDiffStr(date, openDate))
-    } else if (date > closeDate) {
-      const openDateNextYear = moment()
-        .year(parseInt(moment().format('YYYY')) + 1)
-        .month(7)
-        .startOf('month')
-        .day('Friday')
-        .hour(11)
-        .minutes(0)
-        .seconds(0)
-      setwillOpen(true)
-      setCounter(getDateDiffStr(date, openDateNextYear))
+    if (openDate.diff(date, 'seconds') === 0) {
+      setDisplayGif(true)
+    } else {
+      if (date > openDate && date < closeDate) {
+        setwillOpen(false)
+        setCounter(getDateDiffStr(date, closeDate))
+      } else if (date > closeDate) {
+        const openDateNextYear = moment()
+          .year(parseInt(moment().format('YYYY')) + 1)
+          .month(7)
+          .startOf('month')
+          .day('Friday')
+          .hour(11)
+          .minutes(0)
+          .seconds(0)
+        setwillOpen(true)
+        setCounter(getDateDiffStr(date, openDateNextYear))
+      } else {
+        setwillOpen(true)
+        setCounter(getDateDiffStr(date, openDate))
+      }
     }
-    setwillOpen(true)
-    setCounter(getDateDiffStr(date, openDate))
   }
 
   const getDateDiffStr = (startDate, endDate) => {
@@ -72,14 +79,27 @@ const Counter = () => {
 
   return (
     <div className="counter">
-      <span className="will-open-label">
-        {willOpen ? 'La buvette ouvrira dans' : 'La buvette fermera dans'}
-      </span>
-      <div className="count-area">
-        {Object.keys(counter).map((key, value) => (
-          <AfficheurValeur key={key} valeur={counter[key]} unite={key} />
-        ))}
-      </div>
+      {displayGif ? (
+        <img src={gif} alt="gif" />
+      ) : (
+        <>
+          <span className="will-open-label">
+            {willOpen ? 'La buvette ouvrira dans' : 'La buvette fermera dans'}
+          </span>
+          <div className="count-area">
+            {Object.keys(counter).map(
+              (key) =>
+                counter[key] > 0 && (
+                  <AfficheurValeur
+                    key={key}
+                    valeur={counter[key]}
+                    unite={key}
+                  />
+                )
+            )}
+          </div>
+        </>
+      )}
     </div>
   )
 }
