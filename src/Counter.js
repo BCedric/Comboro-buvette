@@ -89,7 +89,7 @@ const Counter = () => {
           <div className="count-area">
             {Object.keys(counter).map(
               (key) =>
-                counter[key] > 0 && (
+                (key === 'secondes' || counter[key] > 0) && (
                   <AfficheurValeur
                     key={key}
                     valeur={counter[key]}

@@ -12,13 +12,19 @@ body {
   background-color: #1b5c98;
 }
 
+.header img {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}
+
 .counter {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   font-size: 5em;
-  padding: 2em;
+  padding: 0.5em;
   text-align: center;
   color: white;
 }
@@ -34,7 +40,7 @@ body {
   border: 2px solid white;
   border-radius: 0.1em;
   color: white;
-  margin: 0 0.25em;
+  margin: 0.25em;
 }
 
 .afficheur-valeur .valeur {
@@ -53,4 +59,40 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1350px) {
+  .afficheur-valeur {
+    padding: 0.375em;
+    margin: 0.187em;
+  }
+  .afficheur-valeur .valeur {
+    font-size: 1.5em;
+  }
+  .afficheur-valeur .unite {
+    font-size: 0.375em;
+  }
+}
+@media (max-width: 800px) {
+  .afficheur-valeur {
+    padding: 0.25em;
+    margin: 0.125em;
+  }
+  .afficheur-valeur .valeur {
+    font-size: 1em;
+  }
+  .afficheur-valeur .unite {
+    font-size: 0.25em;
+  }
+}
+
+@media (max-width: 850px) {
+  .will-open-label {
+    font-size: 0.5em;
+    margin: 0.25em;
+  }
+}
+
+@media (max-width: 700px) {
 }
