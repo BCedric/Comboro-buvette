@@ -1,0 +1,7 @@
+{
+  "name": "comborosCounter",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
