@@ -9,6 +9,11 @@ function App() {
         <img src={comboros} alt="comboros logo" />
       </div>
       <Counter />
+      <div className="android-link">
+        <a href="http://comboros-buvette.alwaysdata.net/apk">
+          Téléchargez l'application mobile !
+        </a>
+      </div>
     </div>
   )
 }

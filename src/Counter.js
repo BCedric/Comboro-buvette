@@ -84,7 +84,7 @@ const Counter = () => {
       ) : (
         <>
           <span className="will-open-label">
-            {willOpen ? 'La buvette ouvrira dans' : 'La buvette fermera dans'}
+            {willOpen ? 'La buvette ouvre dans' : 'La buvette ferme dans'}
           </span>
           <div className="count-area">
             {Object.keys(counter).map(
