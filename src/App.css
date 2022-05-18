@@ -152,3 +152,12 @@ body {
     padding: 5vh;
   }
 }
+
+.download-app-link {
+  text-decoration: underline !important;
+}
+.apk-help {
+  margin: 1em 0 2em 0;
+  text-decoration: underline !important;
+  font-size: 0.7em;
+}
