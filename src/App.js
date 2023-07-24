@@ -1,4 +1,5 @@
 import './App.css'
+import React from 'react'
 import Counter from './Counter'
 import comboros from './images/logo-blanc.png'
 
